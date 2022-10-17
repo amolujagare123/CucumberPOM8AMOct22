@@ -1,4 +1,4 @@
-package pages;
+package stepdefinitions;
 
 
 import io.cucumber.java.After;

@@ -8,7 +8,7 @@ public class ConfigReader {
 
     static Properties getLoadedPropertiesObject() throws IOException {
         // 1. read the file
-        FileInputStream fis = new FileInputStream("Config/config.properties");
+        FileInputStream fis = new FileInputStream("config/project.properties");
 
         // 2. create the object of Properties class
         Properties prop = new Properties();
