@@ -5,6 +5,9 @@ import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import pages.DarkSkyHome;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class DarkskySD {
 
     DarkSkyHome darkSkyHome = new DarkSkyHome();
@@ -27,4 +30,38 @@ public class DarkskySD {
                 ,expected,actual);
     }
 
+    @Then("I verify timeline is displayed with two hours incremented")
+    public void iVerifyTimelineIsDisplayedWithTwoHoursIncremented() {
+
+        ArrayList<Integer> timeList = darkSkyHome.getTimeList();
+        ArrayList<Integer> timeDiffList = new ArrayList<>();
+        for (int i=0;i<timeList.size()-1;i++) // i--> 11
+        {
+            int time1 = timeList.get(i); // 10
+            int time2 = timeList.get(i+1); // 11
+            int timeDiff = 0;
+
+            if(time2>time1)
+              timeDiff = time2 - time1;
+
+            if(time2<time1) // 12 , 3
+            {
+               timeDiff = (time2 + 12) - time1;
+
+               // timeDiff = ( time2+12 ) % 12;
+            }
+            timeDiffList.add(timeDiff);
+        }
+        System.out.println(timeDiffList);
+
+        int size = timeDiffList.size();
+        int frequency = Collections.frequency(timeDiffList,2);
+
+        System.out.println("size="+size);
+        System.out.println("frequency="+frequency);
+
+        boolean result = (size==frequency);
+
+        Assert.assertTrue("all differences are not 2",result);
+    }
 }
