@@ -9,6 +9,54 @@ public class DarkSkyHome extends Base{
      By rawCurrentTemp = By.xpath("//span[@class='summary swap']");
      By rawTimelineTemp = By.xpath("//span[@class='first']//span");
      By timeListRaw = By.xpath("//span[@class='hour']/span");
+     By lowTempRaw = By.xpath("//span[@class='low-temp-text']");
+     By highTempRaw = By.xpath("//span[@class='high-temp-text']");
+
+    By timeLineMinTemp = By.xpath("//a[@data-day='0']//span[@class='minTemp']"); // 68˚
+    By timeLineMaxTemp = By.xpath("//a[@data-day='0']//span[@class='maxTemp']"); // 90˚
+
+    By lnkDarkSkyAPI = By.xpath("//a[normalize-space()='Dark Sky API']");
+
+    public void clickLnkDarkskyAPI()
+    {
+        clickOn(lnkDarkSkyAPI);
+    }
+
+
+    public ArrayList<Integer> getTimelineTempList()
+    {
+        String lowTempStr = getTextFromElement(timeLineMinTemp).split("˚")[0]; // 68˚
+        String highTempStr = getTextFromElement(timeLineMaxTemp).split("˚")[0]; // 90˚
+
+        int lowTemp = Integer.parseInt(lowTempStr);
+        int highTemp = Integer.parseInt(highTempStr);
+
+        ArrayList<Integer> tempList = new ArrayList<Integer>(){{
+            add(lowTemp);
+            add(highTemp);
+        }};
+
+        return tempList;
+    }
+
+    public ArrayList<Integer> getTempList()
+     {
+         String lowTempStr = getTextFromElement(lowTempRaw).split("˚")[0]; // 68˚
+         String highTempStr = getTextFromElement(highTempRaw).split("˚")[0]; // 90˚
+
+         int lowTemp = Integer.parseInt(lowTempStr);
+         int highTemp = Integer.parseInt(highTempStr);
+
+         ArrayList<Integer> tempList = new ArrayList<Integer>(){{
+             add(lowTemp);
+             add(highTemp);
+         }};
+
+        return tempList;
+     }
+
+
+
 
      public ArrayList<Integer> getTimeList() // get the timeline times list in int format
      {

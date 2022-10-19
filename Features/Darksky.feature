@@ -12,8 +12,6 @@ Feature:darksky whether page testing(darksky.net - whether forecasting website h
     Given I am on Darksky Home Page
     Then I verify timeline is displayed with two hours incremented
 
-
-
 #3
   @todaysTemp
   Scenario: Verify individual day temp timeline
