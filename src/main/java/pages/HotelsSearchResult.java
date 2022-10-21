@@ -1,10 +1,9 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 
-import java.util.List;
+import java.time.Duration;
+import java.util.ArrayList;
 
 import static stepdefinitions.SharedSD.getDriver;
 
@@ -12,22 +11,32 @@ public class HotelsSearchResult extends Base{
 
     By allRatings = By.xpath("//div[@data-testid='rating-stars']");
     By allStarsElements = By.xpath("//div[@data-testid='rating-stars']/span");
+    By hotelsList = By.xpath("//div[@data-testid='title']");
+
+
+    public ArrayList<String> getHotelsList()
+    {
+        return getElementTextList(hotelsList);
+    }
+
 
     public void clickStarRating(String rating) // 5 ,4
     {
 
         getDriver().navigate().refresh();
 
+      //  JavascriptExecutor js = (JavascriptExecutor) getDriver();
+     //   js.executeScript("arguments[0].click();",getDriver().findElements(starRating));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         By starRating = By.xpath("//input[@name='class="+rating+"']");
-
-        JavascriptExecutor js = (JavascriptExecutor) getDriver();
-        js.executeScript("arguments[0].click();",getDriver().findElements(starRating));
-
-        //clickOn(starRating);
+        clickOn(starRating);
     }
 
     public  int getStarRating()
     {
+
+        getDriver().navigate().refresh();
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         int starRating =0;
 
        int allRatingBlocks = getDriver().findElements(allRatings).size();

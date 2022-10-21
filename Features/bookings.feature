@@ -17,7 +17,7 @@ Feature: All bookings.com scenarios
 
   @DistList
   Scenario: List of all of hotel within 15 km radius from the center
-    Given I am on default locations search result screen
+     Given I am on default locations search result screen
     Then I verify system displays all hotels within "2" Km radius from beach
 
 
@@ -25,4 +25,4 @@ Feature: All bookings.com scenarios
   @hotelsSearch
   Scenario: verify given hotel is present in the list
     Given I am on default locations search result screen
-    Then I verify "Zone Connect" is within the search result
+    Then I verify "Vista Suites" is within the search result
